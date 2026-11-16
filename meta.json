@@ -1,0 +1,795 @@
+{
+ "built": "2026-11-12 09:18 UTC",
+ "datasets": {
+  "cleaned": {
+   "label": "longmemeval_s_cleaned.json (xiaowu0162/longmemeval-cleaned)",
+   "n": 500,
+   "sha256_16": "ae4cec8023d3195d"
+  },
+  "original": {
+   "label": "longmemeval_s (xiaowu0162/longmemeval), the release used in Zep's published run",
+   "n": 500,
+   "sha256_16": "d260b188faf37ba2"
+  },
+  "M": {
+   "label": "longmemeval_m_cleaned.json (~500 sessions, ~1.5M tokens per question)",
+   "n": 500,
+   "sha256_16": "7fe9adfb457a8c50"
+  }
+ },
+ "variants": {
+  "base": {
+   "dataset": "cleaned",
+   "desc": "search layer only: hybrid search + reranking, top 10",
+   "session_recall": 0.996
+  },
+  "orig": {
+   "dataset": "original",
+   "desc": "search layer only: hybrid search + reranking, top 10",
+   "session_recall": 0.996
+  },
+  "full": {
+   "dataset": "cleaned",
+   "desc": "all links appended (\u224821 passages) \u2014 first attempt, adds noise",
+   "session_recall": 0.998
+  },
+  "cmp": {
+   "dataset": "cleaned",
+   "desc": "full read path: links compete in reranking, strict update labels, 10\u201313 passages",
+   "session_recall": 0.998
+  },
+  "M": {
+   "dataset": "M",
+   "desc": "search layer only, LongMemEval-M",
+   "session_recall": 0.966
+  }
+ },
+ "runs": [
+  {
+   "tag": "gemma-3-4b-it",
+   "dataset": "cleaned",
+   "ctx": "base",
+   "model": "gemma-3-4b-it (open, local GPU)",
+   "prompt": "v1",
+   "n": 500,
+   "accuracy": 0.522,
+   "by_type": {
+    "abstention": [
+     0.5,
+     30
+    ],
+    "knowledge-update": [
+     0.7692,
+     78
+    ],
+    "multi-session": [
+     0.2782,
+     133
+    ],
+    "single-session-assistant": [
+     0.875,
+     56
+    ],
+    "single-session-preference": [
+     0.2333,
+     30
+    ],
+    "single-session-user": [
+     0.8143,
+     70
+    ],
+    "temporal-reasoning": [
+     0.3835,
+     133
+    ]
+   },
+   "errors": {
+    "reader_error": 222,
+    "abstention": 15,
+    "memory_miss": 2
+   },
+   "answer_usd": 0,
+   "avg_prompt_tokens": 5562
+  },
+  {
+   "tag": "gemma-3-4b-it_v2",
+   "dataset": "cleaned",
+   "ctx": "base",
+   "model": "gemma-3-4b-it (open, local GPU)",
+   "prompt": "v2",
+   "n": 500,
+   "accuracy": 0.568,
+   "by_type": {
+    "abstention": [
+     0.5333,
+     30
+    ],
+    "knowledge-update": [
+     0.7821,
+     78
+    ],
+    "multi-session": [
+     0.3233,
+     133
+    ],
+    "single-session-assistant": [
+     0.875,
+     56
+    ],
+    "single-session-preference": [
+     0.4333,
+     30
+    ],
+    "single-session-user": [
+     0.8429,
+     70
+    ],
+    "temporal-reasoning": [
+     0.4436,
+     133
+    ]
+   },
+   "errors": {
+    "reader_error": 200,
+    "abstention": 14,
+    "memory_miss": 2
+   },
+   "answer_usd": 0,
+   "avg_prompt_tokens": 5620
+  },
+  {
+   "tag": "gemma-3-4b-it_v7",
+   "dataset": "cleaned",
+   "ctx": "base",
+   "model": "gemma-3-4b-it (open, local GPU)",
+   "prompt": "v7",
+   "n": 500,
+   "accuracy": 0.564,
+   "by_type": {
+    "abstention": [
+     0.5,
+     30
+    ],
+    "knowledge-update": [
+     0.7821,
+     78
+    ],
+    "multi-session": [
+     0.3308,
+     133
+    ],
+    "single-session-assistant": [
+     0.8571,
+     56
+    ],
+    "single-session-preference": [
+     0.3333,
+     30
+    ],
+    "single-session-user": [
+     0.8,
+     70
+    ],
+    "temporal-reasoning": [
+     0.4737,
+     133
+    ]
+   },
+   "errors": {
+    "reader_error": 201,
+    "abstention": 15,
+    "memory_miss": 2
+   },
+   "answer_usd": 0,
+   "avg_prompt_tokens": 5897
+  },
+  {
+   "tag": "gpt-4o-mini",
+   "dataset": "cleaned",
+   "ctx": "base",
+   "model": "gpt-4o-mini (OpenRouter)",
+   "prompt": "v1",
+   "n": 500,
+   "accuracy": 0.756,
+   "by_type": {
+    "abstention": [
+     0.7,
+     30
+    ],
+    "knowledge-update": [
+     0.8462,
+     78
+    ],
+    "multi-session": [
+     0.6165,
+     133
+    ],
+    "single-session-assistant": [
+     0.9821,
+     56
+    ],
+    "single-session-preference": [
+     0.4333,
+     30
+    ],
+    "single-session-user": [
+     0.9857,
+     70
+    ],
+    "temporal-reasoning": [
+     0.6992,
+     133
+    ]
+   },
+   "errors": {
+    "reader_error": 111,
+    "abstention": 9,
+    "memory_miss": 2
+   },
+   "answer_usd": 0.4048,
+   "avg_prompt_tokens": 5218
+  },
+  {
+   "tag": "gpt-4o-mini_orig",
+   "dataset": "original",
+   "ctx": "orig",
+   "model": "gpt-4o-mini (OpenRouter)",
+   "prompt": "v1",
+   "n": 500,
+   "accuracy": 0.742,
+   "by_type": {
+    "abstention": [
+     0.6333,
+     30
+    ],
+    "knowledge-update": [
+     0.8462,
+     78
+    ],
+    "multi-session": [
+     0.594,
+     133
+    ],
+    "single-session-assistant": [
+     0.9821,
+     56
+    ],
+    "single-session-preference": [
+     0.4,
+     30
+    ],
+    "single-session-user": [
+     0.9857,
+     70
+    ],
+    "temporal-reasoning": [
+     0.6767,
+     133
+    ]
+   },
+   "errors": {
+    "reader_error": 116,
+    "abstention": 11,
+    "memory_miss": 2
+   },
+   "answer_usd": 0.4045,
+   "avg_prompt_tokens": 5215
+  },
+  {
+   "tag": "gpt-4o-mini_v2",
+   "dataset": "cleaned",
+   "ctx": "base",
+   "model": "gpt-4o-mini (OpenRouter)",
+   "prompt": "v2",
+   "n": 500,
+   "accuracy": 0.768,
+   "by_type": {
+    "abstention": [
+     0.6667,
+     30
+    ],
+    "knowledge-update": [
+     0.8462,
+     78
+    ],
+    "multi-session": [
+     0.6165,
+     133
+    ],
+    "single-session-assistant": [
+     0.9643,
+     56
+    ],
+    "single-session-preference": [
+     0.6,
+     30
+    ],
+    "single-session-user": [
+     0.9857,
+     70
+    ],
+    "temporal-reasoning": [
+     0.7143,
+     133
+    ]
+   },
+   "errors": {
+    "reader_error": 104,
+    "abstention": 10,
+    "memory_miss": 2
+   },
+   "answer_usd": 0.4102,
+   "avg_prompt_tokens": 5276
+  },
+  {
+   "tag": "gpt-4o-mini_v2_M",
+   "dataset": "M",
+   "ctx": "M",
+   "model": "gpt-4o-mini (OpenRouter)",
+   "prompt": "v2",
+   "n": 500,
+   "accuracy": 0.666,
+   "by_type": {
+    "abstention": [
+     0.6333,
+     30
+    ],
+    "knowledge-update": [
+     0.7821,
+     78
+    ],
+    "multi-session": [
+     0.4662,
+     133
+    ],
+    "single-session-assistant": [
+     1.0,
+     56
+    ],
+    "single-session-preference": [
+     0.3667,
+     30
+    ],
+    "single-session-user": [
+     0.9286,
+     70
+    ],
+    "temporal-reasoning": [
+     0.5865,
+     133
+    ]
+   },
+   "errors": {
+    "reader_error": 140,
+    "abstention": 11,
+    "memory_miss": 16
+   },
+   "answer_usd": 0.4018,
+   "avg_prompt_tokens": 5151
+  },
+  {
+   "tag": "gpt-4o-mini_v2_orig",
+   "dataset": "original",
+   "ctx": "orig",
+   "model": "gpt-4o-mini (OpenRouter)",
+   "prompt": "v2",
+   "n": 500,
+   "accuracy": 0.758,
+   "by_type": {
+    "abstention": [
+     0.7,
+     30
+    ],
+    "knowledge-update": [
+     0.8205,
+     78
+    ],
+    "multi-session": [
+     0.6015,
+     133
+    ],
+    "single-session-assistant": [
+     0.9821,
+     56
+    ],
+    "single-session-preference": [
+     0.5333,
+     30
+    ],
+    "single-session-user": [
+     0.9857,
+     70
+    ],
+    "temporal-reasoning": [
+     0.7143,
+     133
+    ]
+   },
+   "errors": {
+    "reader_error": 110,
+    "abstention": 9,
+    "memory_miss": 2
+   },
+   "answer_usd": 0.4102,
+   "avg_prompt_tokens": 5273
+  },
+  {
+   "tag": "gpt-4o-mini_v3",
+   "dataset": "cleaned",
+   "ctx": "base",
+   "model": "gpt-4o-mini (OpenRouter)",
+   "prompt": "v3",
+   "n": 500,
+   "accuracy": 0.75,
+   "by_type": {
+    "abstention": [
+     0.6667,
+     30
+    ],
+    "knowledge-update": [
+     0.8333,
+     78
+    ],
+    "multi-session": [
+     0.594,
+     133
+    ],
+    "single-session-assistant": [
+     0.9821,
+     56
+    ],
+    "single-session-preference": [
+     0.5333,
+     30
+    ],
+    "single-session-user": [
+     0.9714,
+     70
+    ],
+    "temporal-reasoning": [
+     0.6917,
+     133
+    ]
+   },
+   "errors": {
+    "reader_error": 113,
+    "abstention": 10,
+    "memory_miss": 2
+   },
+   "answer_usd": 0.4266,
+   "avg_prompt_tokens": 5495
+  },
+  {
+   "tag": "gpt-4o-mini_v4",
+   "dataset": "cleaned",
+   "ctx": "base",
+   "model": "gpt-4o-mini (OpenRouter)",
+   "prompt": "v4",
+   "n": 500,
+   "accuracy": 0.776,
+   "by_type": {
+    "abstention": [
+     0.6,
+     30
+    ],
+    "knowledge-update": [
+     0.8462,
+     78
+    ],
+    "multi-session": [
+     0.6466,
+     133
+    ],
+    "single-session-assistant": [
+     0.9821,
+     56
+    ],
+    "single-session-preference": [
+     0.3333,
+     30
+    ],
+    "single-session-user": [
+     0.9571,
+     70
+    ],
+    "temporal-reasoning": [
+     0.782,
+     133
+    ]
+   },
+   "errors": {
+    "reader_error": 98,
+    "abstention": 12,
+    "memory_miss": 2
+   },
+   "answer_usd": 0.4444,
+   "avg_prompt_tokens": 5390
+  },
+  {
+   "tag": "gpt-4o-mini_v4_full",
+   "dataset": "cleaned",
+   "ctx": "full",
+   "model": "gpt-4o-mini (OpenRouter)",
+   "prompt": "v4",
+   "n": 500,
+   "accuracy": 0.722,
+   "by_type": {
+    "abstention": [
+     0.7667,
+     30
+    ],
+    "knowledge-update": [
+     0.8077,
+     78
+    ],
+    "multi-session": [
+     0.5489,
+     133
+    ],
+    "single-session-assistant": [
+     0.9643,
+     56
+    ],
+    "single-session-preference": [
+     0.1333,
+     30
+    ],
+    "single-session-user": [
+     1.0,
+     70
+    ],
+    "temporal-reasoning": [
+     0.7293,
+     133
+    ]
+   },
+   "errors": {
+    "reader_error": 131,
+    "abstention": 7,
+    "memory_miss": 1
+   },
+   "answer_usd": 0.844,
+   "avg_prompt_tokens": 10733
+  },
+  {
+   "tag": "gpt-4o-mini_v5_cmp",
+   "dataset": "cleaned",
+   "ctx": "cmp",
+   "model": "gpt-4o-mini (OpenRouter)",
+   "prompt": "v5",
+   "n": 500,
+   "accuracy": 0.77,
+   "by_type": {
+    "abstention": [
+     0.6333,
+     30
+    ],
+    "knowledge-update": [
+     0.8462,
+     78
+    ],
+    "multi-session": [
+     0.6391,
+     133
+    ],
+    "single-session-assistant": [
+     1.0,
+     56
+    ],
+    "single-session-preference": [
+     0.3333,
+     30
+    ],
+    "single-session-user": [
+     0.9571,
+     70
+    ],
+    "temporal-reasoning": [
+     0.7594,
+     133
+    ]
+   },
+   "errors": {
+    "reader_error": 103,
+    "abstention": 11,
+    "memory_miss": 1
+   },
+   "answer_usd": 0.5023,
+   "avg_prompt_tokens": 6151
+  },
+  {
+   "tag": "gpt-4o-mini_v6_cmp",
+   "dataset": "cleaned",
+   "ctx": "cmp",
+   "model": "gpt-4o-mini (OpenRouter)",
+   "prompt": "v6",
+   "n": 500,
+   "accuracy": 0.766,
+   "by_type": {
+    "abstention": [
+     0.6,
+     30
+    ],
+    "knowledge-update": [
+     0.8462,
+     78
+    ],
+    "multi-session": [
+     0.6391,
+     133
+    ],
+    "single-session-assistant": [
+     1.0,
+     56
+    ],
+    "single-session-preference": [
+     0.3,
+     30
+    ],
+    "single-session-user": [
+     0.9714,
+     70
+    ],
+    "temporal-reasoning": [
+     0.7444,
+     133
+    ]
+   },
+   "errors": {
+    "reader_error": 104,
+    "abstention": 12,
+    "memory_miss": 1
+   },
+   "answer_usd": 0.5059,
+   "avg_prompt_tokens": 6209
+  },
+  {
+   "tag": "gpt-4o-mini_v7",
+   "dataset": "cleaned",
+   "ctx": "base",
+   "model": "gpt-4o-mini (OpenRouter)",
+   "prompt": "v7",
+   "n": 500,
+   "accuracy": 0.788,
+   "by_type": {
+    "abstention": [
+     0.7,
+     30
+    ],
+    "knowledge-update": [
+     0.8205,
+     78
+    ],
+    "multi-session": [
+     0.6617,
+     133
+    ],
+    "single-session-assistant": [
+     1.0,
+     56
+    ],
+    "single-session-preference": [
+     0.4667,
+     30
+    ],
+    "single-session-user": [
+     0.9714,
+     70
+    ],
+    "temporal-reasoning": [
+     0.782,
+     133
+    ]
+   },
+   "errors": {
+    "reader_error": 95,
+    "abstention": 9,
+    "memory_miss": 2
+   },
+   "answer_usd": 0.4548,
+   "avg_prompt_tokens": 5553
+  },
+  {
+   "tag": "gpt-4o-mini_v7_orig",
+   "dataset": "original",
+   "ctx": "orig",
+   "model": "gpt-4o-mini (OpenRouter)",
+   "prompt": "v7",
+   "n": 500,
+   "accuracy": 0.796,
+   "by_type": {
+    "abstention": [
+     0.6667,
+     30
+    ],
+    "knowledge-update": [
+     0.8333,
+     78
+    ],
+    "multi-session": [
+     0.6842,
+     133
+    ],
+    "single-session-assistant": [
+     1.0,
+     56
+    ],
+    "single-session-preference": [
+     0.5333,
+     30
+    ],
+    "single-session-user": [
+     0.9714,
+     70
+    ],
+    "temporal-reasoning": [
+     0.7669,
+     133
+    ]
+   },
+   "errors": {
+    "reader_error": 90,
+    "abstention": 10,
+    "memory_miss": 2
+   },
+   "answer_usd": 0.4544,
+   "avg_prompt_tokens": 5551
+  },
+  {
+   "tag": "gpt-4o_v7_orig",
+   "dataset": "original",
+   "ctx": "orig",
+   "model": "gpt-4o (OpenRouter)",
+   "prompt": "v7",
+   "n": 500,
+   "accuracy": 0.856,
+   "by_type": {
+    "abstention": [
+     0.7,
+     30
+    ],
+    "knowledge-update": [
+     0.9359,
+     78
+    ],
+    "multi-session": [
+     0.7444,
+     133
+    ],
+    "single-session-assistant": [
+     1.0,
+     56
+    ],
+    "single-session-preference": [
+     0.6,
+     30
+    ],
+    "single-session-user": [
+     0.9714,
+     70
+    ],
+    "temporal-reasoning": [
+     0.8571,
+     133
+    ]
+   },
+   "errors": {
+    "reader_error": 61,
+    "abstention": 9,
+    "memory_miss": 2
+   },
+   "answer_usd": 7.6058,
+   "avg_prompt_tokens": 5551
+  }
+ ],
+ "excluded": [
+  {
+   "tag": "gemma-3-4b-it_v4_full",
+   "n": 78,
+   "reason": "run stopped before completion; not scored"
+  }
+ ],
+ "answer_prompt_source": "PROMPTS = [\"v1\", \"v2\", \"v3\", \"v4\", \"v5\", \"v6\", \"v7\"]\nADVICE = __import__(\"re\").compile(r\"\\b(recommend|suggest|suggestion|advice|advise|tips?|ideas?|what should i|any thoughts|can you help me (choose|pick|find|plan)|what do you think i)\\b\", 2)\n\n\ndef route(q):  # v7: decided from the question text only (the benchmark's question type is never used)\n    return \"v2\" if ADVICE.search(data[q][\"question\"]) else \"v4\"\n\n\ndef mode(q):\n    return route(q) if a.prompt == \"v7\" else a.prompt\n\n\ndef build_sys(pm):\n    s = (\"You are a personal assistant with memory of past chats with the user. \"\n         \"Answer the question using the history chats below. Each chat is dated. \"\n         \"If information changed over time, the most recent statement is the valid one. \"\n         \"For questions about time, reason from the dates of the chats and the current date. \"\n         \"If the history does not contain the answer, say that you don't know. Answer concisely.\")\n    if pm in (\"v2\", \"v3\", \"v4\", \"v5\", \"v6\"):  # agent setup: personalization rule\n        s += (\" When the user asks for advice, recommendations or suggestions, first look in the history for what the user\"\n              \" has said about themselves \u2014 preferences, habits, past experiences, constraints, things they own or did \u2014\"\n              \" and tailor the answer explicitly to them, naming those details, instead of giving generic advice.\")\n    if pm in (\"v3\", \"v4\", \"v5\", \"v6\"):  # dates computed in code, shown in each chat header\n        s += (\" Each chat header already states how long before the current date it happened, and chats are numbered in\"\n              \" time order: use those figures for any question about when, how long ago, how long between, or what came first.\")\n    if pm in (\"v4\", \"v5\", \"v6\"):  # reasoning before answering; only the final answer goes to the judge, the reasoning is logged\n        s = s.replace(\" Answer concisely.\", \"\")\n        s += (\" Think step by step before answering: list the chats that are relevant, write down every relevant item or\"\n              \" event with its chat number and date (for counting questions, list each distinct item once), do any date\"\n              \" arithmetic from the stated day counts, and check which statement is the most recent. Then write a last line\"\n              \" that starts with 'Final answer:' followed by a concise answer.\")\n    if pm in (\"v5\", \"v6\"):\n        s += (\" The final answer must be self-contained: for advice, recommendations or suggestions, it must name the\"\n              \" specific things the user said about themselves that it is based on.\")\n    if pm == \"v6\":\n        s += (\" Requests for advice, recommendations or suggestions are not factual questions: never answer them with\"\n              \" 'I don't know'. Give concrete suggestions built on what the user said about themselves in the history\"\n              \" (their tastes, habits, past experiences, plans), even if the exact item they ask for was never mentioned.\")\n    return s\n\n\nSYS = build_sys(\"v1\" if a.prompt == \"v7\" else a.prompt)  # kept for the dossier's verbatim prompt dump\nREASON = (\"v4\", \"v5\", \"v6\")\nmaxtok = lambda pm: 900 if pm in REASON else 300\n\n\ndef final(txt, pm):\n    if pm not in REASON: return txt, \"\"\n    i = txt.rfind(\"Final answer:\")\n    return (txt[i + len(\"Final answer:\"):].strip(), txt[:i].strip()) if i >= 0 else (txt.strip(), \"\")",
+ "judge_source": "Official get_anscheck_prompt from github.com/xiaowu0162/LongMemEval (src/evaluation/evaluate_qa.py), judge gpt-4o-2024-08-06 via OpenRouter, temperature 0, max_tokens 10, label = 'yes' in reply.",
+ "retrieval": "One cartridge per question built from that question's own history only (rounds = user turn + assistant reply, stamped with session date). No model calls to build memory. Context variants are listed per run."
+}
