@@ -56,6 +56,7 @@ Prompt versions: v1 base · v2 adds a personalisation rule · v3 adds dates comp
 
 - **Memory.** One cartridge per question, built only from that question's own history: each round is a user turn plus the assistant's reply, verbatim, stamped with the session date. No model calls to build memory.
 - **Retrieval.** One search pass: hybrid search (dense + keyword) with reranking, top 10 passages handed to the model in time order. The right past session is among the 10 passages for 99.6% of questions. No agent, no tools.
+- **Speed.** Building the memory from the whole history and searching it takes 0.96 s per question (median; 95th percentile 1.9 s) on a single L40S GPU, and 7.4 s on the ~10× larger M set (`sec` in `runs/ctx_*_trace.jsonl`). Times include the build; search alone over a ready cartridge was not timed separately.
 - **Answer models.** GPT-4o and GPT-4o-mini via OpenRouter (temperature 0); Gemma 3 4B instruct on our own GPU (greedy decoding).
 - **Judge.** The official `get_anscheck_prompt` from LongMemEval's `evaluate_qa.py`, gpt-4o-2024-08-06, temperature 0.
 - **Releases.** `original` is the release used in Zep's published run; `cleaned` is the later cleaned release; `M` is the ~1.5M-token-per-question set. SHA-256 prefixes in `meta.json`.
